@@ -32,8 +32,13 @@ public class PersonaDaoImpl implements PersonaDao{
 
 	@Override
 	public long addPersona(Persona persona) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = """
+				INSERT INTO persona(nombre, apellido, email) values(?, ?, ?);
+			""";
+		return jdbcTemplate.update(sql,
+				persona.getNombre(),
+				persona.getApellido(),
+				persona.getEmail());
 	}
 
 	@Override
